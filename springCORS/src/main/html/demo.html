@@ -1,0 +1,81 @@
+<!DOCTYPE >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Osake jQuery Plugin</title>
+
+</head>
+<body>
+
+<div id="debug"></div>
+
+<script type="text/javascript" src="./jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="./jsDump.js"></script>
+<script type="text/javascript">
+$(function () {
+  var debug = $('#debug');
+
+  var postData = {
+    id : 2,
+    content : "POST"
+  };
+  var json = JSON.stringify(postData);
+  $.ajax({
+    data: json,
+    type: "POST",
+    url: 'http://localhost:8080/greeting',
+    contentType: "application/json",
+    dataType: "json",
+    async: false,
+    success: function(json){
+      var dumped = jsDump.parse(json);
+      debug.append( '<br />====== POST ========');     
+      debug.append('<br />'+dumped);
+    },
+    error: function(json){      
+    }
+  }); 
+
+  var patchData = {
+    id : 3,
+    content : "PATCH"
+  };
+  var json = JSON.stringify(patchData);
+  $.ajax({
+    data: json,
+    type: "PATCH",
+    url: 'http://localhost:8080/greeting',
+    contentType: "application/json",
+    dataType: "json",
+    async: false,
+    success: function(json){
+      var dumped = jsDump.parse(json);
+      debug.append( '<br />====== PATCH ========');     
+      debug.append('<br />'+dumped);
+    },
+    error: function(json){
+      
+    }
+  });
+
+  $.ajax({
+    data: json,
+    type: "GET",
+    url: 'http://localhost:8080/greeting',
+    async: false,
+    success: function(json){
+      var dumped = jsDump.parse(json);
+      debug.append( '<br />====== GET ========');     
+      debug.append('<br />'+dumped);
+    },
+    error: function(json){
+      
+    }
+  }); 
+
+
+
+});
+</script>
+</body>
+</html>
