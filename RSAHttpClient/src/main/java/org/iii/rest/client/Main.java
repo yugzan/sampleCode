@@ -16,10 +16,13 @@ public class Main {
 
 	public static void main(String[] args)  {
 		
+	    //get access token
 	    LoginRequest loginRequest = new LoginRequest(id, pw);
 	    String jsonToken = new Client().post(loginUrl, loginRequest);
 	    JSONObject jsonObj = (JSONObject)JSONValue.parse(jsonToken);
 	    String token = (String)jsonObj.get("token");
+	    
+	    //get device list
 	    GetDeviceListRequest deviceListRequest = new GetDeviceListRequest(token, 1, 30);
 	    String jsonDeviceList = new Client().post(getDeviceListUrl, deviceListRequest);
 	    
