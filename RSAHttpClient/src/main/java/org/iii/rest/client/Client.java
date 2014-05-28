@@ -15,41 +15,41 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import com.google.gson.Gson;
 
 public class Client {
-    private static final String USER_AGENT = "III";
+  private static final String USER_AGENT = "III";
 
-    public String post(String url, Object data) {
-        HttpClient client = new DefaultHttpClient();
-        HttpPost post = new HttpPost(url);
-        String receiveData = null;
+  public String post(String url, Object data) {
+    HttpClient client = new DefaultHttpClient();
+    HttpPost post = new HttpPost(url);
+    String receiveData = null;
 
-        // add header
-        post.setHeader("User-Agent", USER_AGENT);
-        post.setHeader("Content-type", "application/json");
-        
-        try {
-            System.out.println(new Gson().toJson(data));
-            post.setEntity(new StringEntity(new Gson().toJson(data)));
-            HttpResponse response;
-            response = client.execute(post);
-            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity()
-                    .getContent()));
+    // add header
+    post.setHeader("User-Agent", USER_AGENT);
+    post.setHeader("Content-type", "application/json");
 
-            receiveData = rd.readLine();
- 
-//            jsonObj = (JSONObject) JSONValue.parse(json);
+    try {
+      System.out.println(new Gson().toJson(data));
+      post.setEntity(new StringEntity(new Gson().toJson(data)));
+      HttpResponse response;
+      response = client.execute(post);
+      BufferedReader rd =
+          new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return receiveData;
+      receiveData = rd.readLine();
+
+      // jsonObj = (JSONObject) JSONValue.parse(json);
+
+    } catch (UnsupportedEncodingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (ClientProtocolException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
+    return receiveData;
+  }
 
 
 }
