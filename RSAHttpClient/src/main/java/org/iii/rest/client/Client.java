@@ -12,7 +12,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Client {
   private static final String USER_AGENT = "III";
@@ -27,8 +27,7 @@ public class Client {
     post.setHeader("Content-type", "application/json");
 
     try {
-      System.out.println(new Gson().toJson(data));
-      post.setEntity(new StringEntity(new Gson().toJson(data)));
+      post.setEntity(new StringEntity(new ObjectMapper().writeValueAsString(data)));
       HttpResponse response;
       response = client.execute(post);
       BufferedReader rd =

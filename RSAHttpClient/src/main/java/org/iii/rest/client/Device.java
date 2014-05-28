@@ -1,54 +1,65 @@
 package org.iii.rest.client;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Device {
-  private String DEVICE_ID;
-  private String TYPE;
-  private String CIRCUIT;
-  private String FEED_ID;
-  private String API_KEY;
+  @JsonProperty("DEVICE_ID")
+  private String deviceId;
+
+  @JsonProperty("TYPE")
+  private String type;
+  
+  @JsonProperty("CIRCUIT")
+  private String circuit;
+  
+  @JsonProperty("FEED_ID")
+  private String feedId;
+  
+  @JsonProperty("API_KEY")
+  private String apiKey;
 
   public Device() {
 
   }
 
-  public String getDEVICE_ID() {
-    return DEVICE_ID;
+  public String getDeviceId() {
+    return deviceId;
   }
 
-  public void setDEVICE_ID(String dEVICE_ID) {
-    DEVICE_ID = dEVICE_ID;
+  public void setDeviceId(String deviceId) {
+    this.deviceId = deviceId;
   }
 
-  public String getTYPE() {
-    return TYPE;
+  public String getType() {
+    return type;
   }
 
-  public void setTYPE(String tYPE) {
-    TYPE = tYPE;
+  public void setType(String type) {
+    this.type = type;
   }
 
-  public String getCIRCUIT() {
-    return CIRCUIT;
+  public String getCircuit() {
+    return circuit;
   }
 
-  public void setCIRCUIT(String cIRCUIT) {
-    CIRCUIT = cIRCUIT;
+  public void setCircuit(String circuit) {
+    this.circuit = circuit;
   }
 
-  public String getFEED_ID() {
-    return FEED_ID;
+  public String getFeedId() {
+    return feedId;
   }
 
-  public void setFEED_ID(String feed_ID) {
-    FEED_ID = feed_ID;
+  public void setFeedId(String feedId) {
+    this.feedId = feedId;
   }
 
-  public String getAPI_KEY() {
-    return API_KEY;
+  public String getApiKey() {
+    return apiKey;
   }
 
-  public void setAPI_KEY(String aPI_KEY) {
-    API_KEY = aPI_KEY;
+  public void setApiKey(String apiKey) {
+    this.apiKey = apiKey;
   }
 
 }

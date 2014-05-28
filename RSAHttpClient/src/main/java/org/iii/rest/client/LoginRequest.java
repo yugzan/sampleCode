@@ -1,14 +1,16 @@
 package org.iii.rest.client;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class LoginRequest {
   private String data;
 
   public LoginRequest(String id, String pw) {
-    Gson gson = new Gson();
-    String json = gson.toJson(new Login(id, pw));
+    ObjectMapper objectMapper = new ObjectMapper();
+    String json = null;
+    
     try {
+      json = objectMapper.writeValueAsString(new Login(id, pw));
       this.data = new RSAEncoder().encrypt(json);
     } catch (Exception e) {
       e.printStackTrace();

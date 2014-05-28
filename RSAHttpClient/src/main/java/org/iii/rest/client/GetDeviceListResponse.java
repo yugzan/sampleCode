@@ -1,5 +1,6 @@
 package org.iii.rest.client;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ public class GetDeviceListResponse {
     return deviceList;
   }
 
-  public void setDevice(List<Device> deviceList) {
+  public void setDeviceList(List<Device> deviceList) {
     this.deviceList = deviceList;
   }
 
@@ -35,5 +36,7 @@ public class GetDeviceListResponse {
   public void setTotal(int total) {
     this.total = total;
   }
+
+ 
 
 }
