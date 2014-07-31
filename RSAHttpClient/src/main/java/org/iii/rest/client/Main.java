@@ -24,7 +24,7 @@ public class Main {
 
     // get device list
     GetDeviceListRequest deviceListRequest =
-        new GetDeviceListRequest(loginResponse.getToken(), 1, 3);
+        new GetDeviceListRequest(loginResponse.getToken(), 1, 40);
     String jsonDeviceList = new Client().post(getDeviceListUrl, deviceListRequest);
 
     GetDeviceListResponse getDeviceListResponse =
