@@ -20,12 +20,12 @@ public class SmsgoClient {
   public String send() throws Exception {
 
     // httpclient 4.3.4 ignoring ssl certificate
-    SSLContextBuilder builder = new SSLContextBuilder();
-    builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
-    SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(builder.build());
-    CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
+//    SSLContextBuilder builder = new SSLContextBuilder();
+//    builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
+//    SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(builder.build());
+//    CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
 
-
+    CloseableHttpClient httpclient = HttpClients.createDefault();
     URI uri =
         new URIBuilder().setScheme("https").setHost("ssl.smsgo.com.tw")
             .setPath("/sms_gw/sendsms.aspx").setParameter("username", "")
