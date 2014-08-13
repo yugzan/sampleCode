@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+description = "Quartz Scheduler Sample"
+
+version = "0.1.0-SNAPSHOT"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    baseName = 'quartz'
+}
+
+mainClassName = "test.main"
+
+repositories {
+  mavenLocal()
+  maven { url "http://140.92.71.209:8080/nexus/content/groups/public" }
+  mavenCentral()
+}
+dependencies {
+  compile 'org.quartz-scheduler:quartz:2.2.1'
+  compile 'org.slf4j:slf4j-api:1.6.4'
+  compile 'ch.qos.logback.extensions:logback-ext-spring:0.1.0-SNAPSHOT'
+}
+
