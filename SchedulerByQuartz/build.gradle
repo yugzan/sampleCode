@@ -14,6 +14,24 @@ jar {
 
 mainClassName = "test.main"
 
+jar {
+ 
+    manifest {        
+        attributes "Implementation-Version": version
+        attributes "Main-Class" : mainClassName
+    }
+ 
+    // remove the security files (from mail.jar / activation.jar) so that the jar will be executable.
+    doFirst {
+        from (configurations.runtime.resolve().collect { it.isDirectory() ? it : zipTree(it) }) {
+            exclude 'META-INF/MANIFEST.MF'
+            exclude 'META-INF/*.SF'
+            exclude 'META-INF/*.DSA'
+            exclude 'META-INF/*.RSA'
+        }
+    }
+}
+
 repositories {
   mavenLocal()
   maven { url "http://140.92.71.209:8080/nexus/content/groups/public" }
