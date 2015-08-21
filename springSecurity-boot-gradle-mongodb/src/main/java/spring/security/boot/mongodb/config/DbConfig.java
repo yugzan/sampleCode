@@ -3,16 +3,15 @@
  */
 package spring.security.boot.mongodb.config;
 
-import java.net.UnknownHostException;
-
-import org.jongo.Jongo;
-import org.jongo.MongoCollection;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.mongodb.DB;
+import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
 
 /**
  * @author teddy
@@ -20,20 +19,24 @@ import com.mongodb.MongoException;
  */
 
 @Configuration
-public class DbConfig {
-  @Bean
-  public Jongo jongo() {
-    DB db;
-    try {
-      db = new MongoClient("127.0.0.1", 27017).getDB("test");
-    } catch (UnknownHostException e) {
-      throw new MongoException("Connection error : ", e);
-    }
-    return new Jongo(db);
+@EnableMongoRepositories(basePackages = "spring.security.boot.mongodb.repo")
+public class DbConfig extends AbstractMongoConfiguration {
+
+  @Override
+  protected String getDatabaseName() {
+    return "test";
+  }
+
+  @Override
+  public Mongo mongo() throws Exception {
+    MongoClient client = new MongoClient("127.0.0.1");
+    client.setWriteConcern(WriteConcern.SAFE);
+    return client;
   }
 
   @Bean
-  public MongoCollection users() {
-    return jongo().getCollection("users");
+  public MongoTemplate mongoTemplate() throws Exception {
+      return new MongoTemplate(mongo(), getDatabaseName());
   }
+
 }
