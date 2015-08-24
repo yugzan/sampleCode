@@ -13,8 +13,10 @@ import java.io.IOException;
  */
 
 public class GrantedAuthorityDeserializer extends JsonDeserializer<SimpleGrantedAuthority> {
-    @Override
-    public SimpleGrantedAuthority deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
-        return new SimpleGrantedAuthority(jp.getValueAsString());
-    }
+  
+  @Override
+  public SimpleGrantedAuthority deserialize(JsonParser jp, DeserializationContext ctxt)
+      throws IOException {
+    return new SimpleGrantedAuthority(jp.getValueAsString());
+  }
 }
